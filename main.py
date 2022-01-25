@@ -34,18 +34,22 @@ class RandomNameSelector:
             nameAndURL = random.choice(self.namesAndURLs)
             nameAndUrlList = nameAndURL.split(",")
             name=nameAndUrlList[0]
-            gui.msgbox(name, title="Victim",ok_button="Press here to being subjugation...")
             
-            try:
-                url=nameAndUrlList[1]
-                if len(url) > 0:
-                    webbrowser.open(url.strip())
-            except Exception:
-                pass
+            skipPhrase="Spare from subjugation"
+            continuePhrase="Press here to being subjugation..."
+            proceed = gui.boolbox(name, title="Victim...",choices=[continuePhrase, skipPhrase])
+            
+            if proceed:
+                try:
+                    url=nameAndUrlList[1]
+                    if len(url) > 0:
+                        webbrowser.open(url.strip())
+                    gui.msgbox("If the collective are satisfied with your tribute.", title="Reckoning...",ok_button="Press here to subjugate next victim.")
+                except Exception:
+                    pass
             
             self.namesAndURLs.remove(nameAndURL)
             i = i + 1
-            gui.msgbox("If the collective are Satisfied with your tribute.", title="Proceeding...",ok_button="Press here to subjugate next victim.")
 
 if __name__ == "__main__":
     rns = RandomNameSelector()
