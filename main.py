@@ -1,5 +1,4 @@
 import random
-from token import EXACT_TOKEN_TYPES
 import easygui as gui
 import webbrowser
 from playsound import playsound
