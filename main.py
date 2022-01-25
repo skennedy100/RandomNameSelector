@@ -1,4 +1,3 @@
-from pickle import TRUE
 import random
 from token import EXACT_TOKEN_TYPES
 import easygui as gui
@@ -22,7 +21,6 @@ class RandomNameSelector:
             print('Invalid file path:', filename)
             status = False
 
-        # print(self.namesAndURLs)
         return status
 
     def SelectRandomNames(self):
@@ -49,7 +47,6 @@ class RandomNameSelector:
             self.namesAndURLs.remove(nameAndURL)
             i = i + 1
             gui.msgbox("If the collective are Satisfied with your tribute.", title="Proceeding...",ok_button="Press here to subjugate next victim.")
-            # input('Press any key to continue...')
 
 if __name__ == "__main__":
     rns = RandomNameSelector()
