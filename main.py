@@ -85,6 +85,10 @@ class RandomNameSelector:
 
     def finish(self):
         self.msgFunc=self.exit
+        try:
+            playsound('sounds/ThatsAllFolks.mp3')
+        except Exception:
+            pass
         self.msgbox("That's all folks.", title="Finisher...",ok_button="Get back to work.")
         
     def exit(self, event):
