@@ -1,11 +1,15 @@
+from logging import exception
 import random
 import webbrowser
+import os
 from playsound import playsound
 from tkinter import *
 
 class RandomNameSelector:
     def __init__(self):
         self.namesAndURLs=[]
+        self.soundDir="sounds/"
+        self.sounds=[]
         self.currentURL=""
         self.choiceWindow=Tk()
         self.msgWindow=Tk()
@@ -25,6 +29,11 @@ class RandomNameSelector:
             status = False
 
         return status
+
+    def LoadSounds(self):
+        self.sounds = os.listdir(self.soundDir)
+        self.sounds.remove("ThatsAllFolks.mp3")
+
 
     def CloseWindow(self):
         self.choiceWindow.destroy()
@@ -86,7 +95,7 @@ class RandomNameSelector:
     def finish(self):
         self.msgFunc=self.exit
         try:
-            playsound('sounds/ThatsAllFolks.mp3')
+            playsound(self.soundDir + 'ThatsAllFolks.mp3')
         except Exception:
             pass
         self.msgbox("That's all folks.", title="Finisher...",ok_button="Get back to work.")
@@ -100,7 +109,11 @@ class RandomNameSelector:
     def SelectRandomName(self):
         if len(self.namesAndURLs) > 0:
             try:
-                playsound('sounds/DrumRoll.wav')
+                if not self.sounds:
+                    rns.LoadSounds()
+                sound = random.choice(self.sounds)
+                playsound(self.soundDir + sound)
+                self.sounds.remove(sound)
             except Exception:
                 pass
             
